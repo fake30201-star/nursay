@@ -3,161 +3,183 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nursay | منصة التمريض العملي المتكاملة</title>
-  <link rel="stylesheet" href="nnn.css">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <title>Nursay | الانضمام والاشتراك</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- بداية كود التصميم (CSS) -->
+  <style>
+    :root {
+      --bg-color: #0d1117;
+      --card-bg: rgba(22, 27, 34, 0.75);
+      --accent-cyan: #00f2fe;
+      --accent-blue: #4facfe;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
+
+    body {
+      background-color: var(--bg-color);
+      background-image: radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 85% 85%, rgba(79, 172, 254, 0.08) 0%, transparent 40%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .brand-header { text-align: center; margin-bottom: 35px; }
+    .brand-header h1 { font-size: 2.8rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand-header p { color: var(--text-muted); font-size: 1.1rem; margin-top: 5px; }
+
+    .auth-card { background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--border-color); border-radius: 20px; padding: 35px; width: 100%; max-width: 440px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); margin-bottom: 50px; }
+    
+    .auth-tabs { display: flex; background: rgba(0, 0, 0, 0.3); padding: 5px; border-radius: 12px; margin-bottom: 25px; border: 1px solid rgba(255, 255, 255, 0.05); }
+    .tab-btn { flex: 1; padding: 10px; border: none; background: transparent; color: var(--text-muted); font-weight: 700; font-size: 0.95rem; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; }
+    .tab-btn.active { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); color: #000; box-shadow: 0 4px 12px rgba(0, 242, 254, 0.25); }
+
+    .input-group { margin-bottom: 18px; text-align: right; }
+    .input-group label { display: block; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
+    .input-group input { width: 100%; padding: 14px; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border-color); border-radius: 10px; color: #fff; font-size: 1rem; outline: none; }
+    .input-group input:focus { border-color: var(--accent-cyan); box-shadow: 0 0 8px rgba(0, 242, 254, 0.2); }
+
+    .submit-btn { width: 100%; padding: 14px; border: none; border-radius: 10px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); color: #0a0f1d; font-size: 1.05rem; font-weight: 800; cursor: pointer; margin-top: 10px; }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 242, 254, 0.3); }
+
+    .plans-section { width: 100%; max-width: 900px; text-align: center; }
+    .plans-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; }
+    .plans-subtitle { color: var(--text-muted); margin-bottom: 35px; }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .plan-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: all 0.3s ease; }
+    .plan-card:hover { border-color: var(--accent-cyan); transform: translateY(-5px); }
+    .plan-card.featured { border: 2px solid var(--accent-cyan); box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15); }
+    
+    .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); color: #000; font-weight: 800; font-size: 0.75rem; padding: 4px 15px; border-radius: 20px; }
+    
+    .plan-name { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+    .plan-price { font-size: 2.5rem; font-weight: 800; color: var(--accent-cyan); margin-bottom: 15px; }
+    .plan-price span { font-size: 0.9rem; color: var(--text-muted); font-weight: 400; }
+
+    .plan-features { list-style: none; text-align: right; margin-bottom: 25px; }
+    .plan-features li { margin-bottom: 12px; color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+    .plan-features li::before { content: "✓"; color: var(--accent-cyan); font-weight: bold; }
+
+    .plan-btn { padding: 12px; border: 1px solid var(--accent-cyan); background: transparent; color: var(--accent-cyan); font-weight: 700; border-radius: 10px; cursor: pointer; }
+    .plan-card.featured .plan-btn, .plan-btn:hover { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); color: #000; border: none; }
+
+    .form-toggle { display: none; }
+    .form-toggle.active { display: block; }
+  </style>
+  <!-- نهاية كود التصميم -->
 </head>
-<body class="dark-mode">
+<body>
 
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
+<div class="brand-header">
+  <h1>Nursay 🩺</h1>
+  <p>دليلك الشامل لتدريبات الـ OSCE واختبارات التمريض العملي</p>
+</div>
+  <div class="auth-card">
+    <div class="auth-tabs">
+      <button class="tab-btn active" onclick="switchTab('login')">تسجيل الدخول</button>
+      <button class="tab-btn" onclick="switchTab('signup')">حساب جديد</button>
+    </div>
 
-  <!-- الهيدر الزجاجي -->
-  <header class="header-glass">
-    <div class="container nav-container">
-      <div class="brand">
-        <div class="logo-badge">🩺</div>
-        <div class="logo-text">Nursay<span class="pulse-dot"></span></div>
+    <form id="login-form" class="form-toggle active" onsubmit="handleAuth(event)">
+      <div class="input-group">
+        <label>البريد الإلكتروني</label>
+        <input type="email" placeholder="student@nurse.com" required>
+      </div>
+      <div class="input-group">
+        <label>كلمة السر</label>
+        <input type="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="submit-btn">الدخول للمنصة</button>
+    </form>
+
+    <form id="signup-form" class="form-toggle" onsubmit="handleAuth(event)">
+      <div class="input-group">
+        <label>الاسم بالكامل</label>
+        <input type="text" placeholder="أحمد محمد" required>
+      </div>
+      <div class="input-group">
+        <label>البريد الإلكتروني</label>
+        <input type="email" placeholder="student@nurse.com" required>
+      </div>
+      <div class="input-group">
+        <label>كلمة السر</label>
+        <input type="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="submit-btn">إنشاء الحساب</button>
+    </form>
+  </div>
+
+  <div class="plans-section">
+    <h2 class="plans-title">اختر خطة الاشتراك المناسبة</h2>
+    <p class="plans-subtitle">وصول غير محدود لجميع أدوات وحاسبات الـ OSCE</p>
+
+    <div class="pricing-grid">
+      <div class="plan-card">
+        <div class="plan-name">الخطة الشهرية</div>
+        <div class="plan-price">5$ <span>/ شهرياً</span></div>
+        <ul class="plan-features">
+          <li>وصول كامل لحاسبة الـ IV Drip</li>
+          <li>أدوات حساب جرعات الأدوية</li>
+          <li>متابعة التقدم (Progress Tracking)</li>
+        </ul>
+        <button class="plan-btn" onclick="selectPlan('الشهري')">اشترك الآن</button>
       </div>
 
-      <nav class="nav-links">
-        <a href="#skills-section" class="active">المهارات والـ OSCE</a>
-        <a href="#calculator-section">حاسبة المحاليل</a>
-      </nav>
-
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle">☀️</button>
+      <div class="plan-card featured">
+        <div class="badge">الأكثر إقبالاً 🔥</div>
+        <div class="plan-name">الخطة السنوية</div>
+        <div class="plan-price">45$ <span>/ سنوياً</span></div>
+        <ul class="plan-features">
+          <li>كل مميزات الخطة الشهرية</li>
+          <li>خصم 25% من قيمة الاشتراك</li>
+          <li>وصول لكافة قوائم تدريبات OSCE المستقبلية</li>
+          <li>دعم فني وتحديثات مستمرة</li>
+        </ul>
+        <button class="plan-btn" onclick="selectPlan('السنوي')">اشترك بالخصم</button>
       </div>
     </div>
-  </header>
+  </div>
 
-  <main class="container main-layout">
+  <!-- بداية كود البرمجة (JavaScript) -->
+  <script>
+    function switchTab(type) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.form-toggle').forEach(form => form.classList.remove('active'));
 
-    <!-- شريط متابعة الإنجاز -->
-    <section class="tracker-card">
-      <div class="tracker-info">
-        <h2>أهلاً بك في منصة Nursay 👋</h2>
-        <p>مساعدك الذكي لإتقان المهارات الإكلينيكية واجتياز امتحانات الـ OSCE.</p>
-      </div>
-      <div class="tracker-stats">
-        <div class="stat-box">
-          <span class="stat-num" id="totalScore">0%</span>
-          <span class="stat-label">معدل الإنجاز الكلي</span>
-        </div>
-      </div>
-    </section>
+      if (type === 'login') {
+        document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        document.getElementById('login-form').classList.add('active');
+      } else {
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        document.getElementById('signup-form').classList.add('active');
+      }
+    }
 
-    <!-- مشغل المهارات والـ Checklist التفاعلية -->
-    <section class="skill-player-section" id="skills-section">
-      <div class="section-header">
-        <h2>📋 المهارة الحالية: تركيب الكانيولا الوريدية (IV Cannulation)</h2>
-        <span class="skill-tag">مهارة أساسية</span>
-      </div>
+    function handleAuth(e) {
+      e.preventDefault();
+      localStorage.setItem('userLoggedIn', 'true');
+      alert('تم تسجيل الدخول بنجاح! جاري التوجيه للرئيسية...');
+      window.location.href = 'index.html';
+    }
 
-      <div class="player-grid">
-        <!-- مشغل الفيديو -->
-        <div class="video-container">
-          <iframe 
-            src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" 
-            title="فيديو المهارة" 
-            allowfullscreen>
-          </iframe>
-          <div class="video-info">
-            <h3>خطوات تركيب الكانيولا بالتفصيل</h3>
-            <p>شاهد الفيديو وقم بالتعليم على الخطوات التي أتقنتها في القائمة التفاعلية.</p>
-          </div>
-        </div>
-
-        <!-- الـ Checklist التفاعلية -->
-        <div class="checklist-container">
-          <div class="checklist-header">
-            <h3>قائمة تقييم الـ OSCE</h3>
-            <span class="progress-badge" id="checkProgressText">0 / 5 خطوة</span>
-          </div>
-
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
-          </div>
-
-          <div class="checklist-items" id="checklistItems">
-            <label class="check-item">
-              <input type="checkbox" data-index="0" onchange="updateChecklist()">
-              <span class="custom-check"></span>
-              <span class="item-text">1. غسل اليدين بالطريقة الصحية وارتداء الجوانتي المعقم.</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-index="1" onchange="updateChecklist()">
-              <span class="custom-check"></span>
-              <span class="item-text">2. شل حركة الوريد وتطهير موضع الوكز بالكحول بزاوية دائرية.</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-index="2" onchange="updateChecklist()">
-              <span class="custom-check"></span>
-              <span class="item-text">3. إدخال سن الكانيولا بزاوية 15 إلى 30 درجة وملاحظة تدفق الدم (Flashback).</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-index="3" onchange="updateChecklist()">
-              <span class="custom-check"></span>
-              <span class="item-text">4. سحب السن المعدني للخلف تدريجياً ودفُع القسطرة البلاستيكية داخل الوريد.</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-index="4" onchange="updateChecklist()">
-              <span class="custom-check"></span>
-              <span class="item-text">5. فك التورنيكيه، تثبيت الكانيولا بالبلاستر الشفاف، وتوصيل المحلول.</span>
-            </label>
-          </div>
-
-          <button class="btn-reset" onclick="resetChecklist()">إعادة التقييم 🔄</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- حاسبة المحاليل والجرعات الطبية -->
-    <section class="calculator-section" id="calculator-section">
-      <div class="section-header">
-        <h2>🧮 حاسبة معدل تقطير المحاليل ($IV\ Drip\ Rate$)</h2>
-        <p>احسب عدد القطرات في الدقيقة بسرعة لضمان إعطاء المحلول في الوقت المحدد.</p>
-      </div>
-
-      <div class="calc-card">
-        <div class="calc-inputs">
-          <div class="input-group">
-            <label>حجم المحلول المطلوب (مل / mL):</label>
-            <input type="number" id="volumeInput" placeholder="مثال: 500" value="500">
-          </div>
-
-          <div class="input-group">
-            <label>الوقت المحدد بالساعات (Hours):</label>
-            <input type="number" id="timeInput" placeholder="مثال: 8" value="8">
-          </div>
-
-          <div class="input-group">
-            <label>معامل جهاز المحلول (Drop Factor):</label>
-            <select id="dropFactorSelect">
-              <option value="20">جهاز محاليل عادي (Macro-drip = 20 drop/mL)</option>
-              <option value="60">جهاز محاليل أطفال (Micro-drip = 60 drop/mL)</option>
-              <option value="15">جهاز نقل دم (Blood Set = 15 drop/mL)</option>
-            </select>
-          </div>
-
-          <button class="btn-calc" onclick="calculateDripRate()">احسب المعدل الآن ⚡</button>
-        </div>
-
-        <div class="calc-result">
-          <h3>النتيجة الحسابية:</h3>
-          <div class="result-number" id="resultDripRate">0</div>
-          <span class="result-unit">قطرة / دقيقة (Drops/Min)</span>
-          <p class="result-hint" id="resultHint">أدخل البيانات واضغط احسب لمعرفة السرعة المطلوبة.</p>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <script src="nnn.js"></script>
+    function selectPlan(planType) {
+      if (!localStorage.getItem('userLoggedIn')) {
+        alert('برجاء تسجيل الدخول أو إنشاء حساب أولاً!');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      alert('تم اختيار الاشتراك ' + planType + '! سيتم توجيهك لصفحة الدفع.');
+    }
+  </script>
+  <!-- نهاية كود البرمجة -->
 </body>
 </html>
