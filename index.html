@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nursay | منصة التمريض العملي المتكاملة</title>
+  <link rel="stylesheet" href="nnn.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- الهيدر الزجاجي -->
+  <header class="header-glass">
+    <div class="container nav-container">
+      <div class="brand">
+        <div class="logo-badge">🩺</div>
+        <div class="logo-text">Nursay<span class="pulse-dot"></span></div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#skills-section" class="active">المهارات والـ OSCE</a>
+        <a href="#calculator-section">حاسبة المحاليل</a>
+      </nav>
+
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-layout">
+
+    <!-- شريط متابعة الإنجاز -->
+    <section class="tracker-card">
+      <div class="tracker-info">
+        <h2>أهلاً بك في منصة Nursay 👋</h2>
+        <p>مساعدك الذكي لإتقان المهارات الإكلينيكية واجتياز امتحانات الـ OSCE.</p>
+      </div>
+      <div class="tracker-stats">
+        <div class="stat-box">
+          <span class="stat-num" id="totalScore">0%</span>
+          <span class="stat-label">معدل الإنجاز الكلي</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- مشغل المهارات والـ Checklist التفاعلية -->
+    <section class="skill-player-section" id="skills-section">
+      <div class="section-header">
+        <h2>📋 المهارة الحالية: تركيب الكانيولا الوريدية (IV Cannulation)</h2>
+        <span class="skill-tag">مهارة أساسية</span>
+      </div>
+
+      <div class="player-grid">
+        <!-- مشغل الفيديو -->
+        <div class="video-container">
+          <iframe 
+            src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" 
+            title="فيديو المهارة" 
+            allowfullscreen>
+          </iframe>
+          <div class="video-info">
+            <h3>خطوات تركيب الكانيولا بالتفصيل</h3>
+            <p>شاهد الفيديو وقم بالتعليم على الخطوات التي أتقنتها في القائمة التفاعلية.</p>
+          </div>
+        </div>
+
+        <!-- الـ Checklist التفاعلية -->
+        <div class="checklist-container">
+          <div class="checklist-header">
+            <h3>قائمة تقييم الـ OSCE</h3>
+            <span class="progress-badge" id="checkProgressText">0 / 5 خطوة</span>
+          </div>
+
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+          </div>
+
+          <div class="checklist-items" id="checklistItems">
+            <label class="check-item">
+              <input type="checkbox" data-index="0" onchange="updateChecklist()">
+              <span class="custom-check"></span>
+              <span class="item-text">1. غسل اليدين بالطريقة الصحية وارتداء الجوانتي المعقم.</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-index="1" onchange="updateChecklist()">
+              <span class="custom-check"></span>
+              <span class="item-text">2. شل حركة الوريد وتطهير موضع الوكز بالكحول بزاوية دائرية.</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-index="2" onchange="updateChecklist()">
+              <span class="custom-check"></span>
+              <span class="item-text">3. إدخال سن الكانيولا بزاوية 15 إلى 30 درجة وملاحظة تدفق الدم (Flashback).</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-index="3" onchange="updateChecklist()">
+              <span class="custom-check"></span>
+              <span class="item-text">4. سحب السن المعدني للخلف تدريجياً ودفُع القسطرة البلاستيكية داخل الوريد.</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-index="4" onchange="updateChecklist()">
+              <span class="custom-check"></span>
+              <span class="item-text">5. فك التورنيكيه، تثبيت الكانيولا بالبلاستر الشفاف، وتوصيل المحلول.</span>
+            </label>
+          </div>
+
+          <button class="btn-reset" onclick="resetChecklist()">إعادة التقييم 🔄</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- حاسبة المحاليل والجرعات الطبية -->
+    <section class="calculator-section" id="calculator-section">
+      <div class="section-header">
+        <h2>🧮 حاسبة معدل تقطير المحاليل ($IV\ Drip\ Rate$)</h2>
+        <p>احسب عدد القطرات في الدقيقة بسرعة لضمان إعطاء المحلول في الوقت المحدد.</p>
+      </div>
+
+      <div class="calc-card">
+        <div class="calc-inputs">
+          <div class="input-group">
+            <label>حجم المحلول المطلوب (مل / mL):</label>
+            <input type="number" id="volumeInput" placeholder="مثال: 500" value="500">
+          </div>
+
+          <div class="input-group">
+            <label>الوقت المحدد بالساعات (Hours):</label>
+            <input type="number" id="timeInput" placeholder="مثال: 8" value="8">
+          </div>
+
+          <div class="input-group">
+            <label>معامل جهاز المحلول (Drop Factor):</label>
+            <select id="dropFactorSelect">
+              <option value="20">جهاز محاليل عادي (Macro-drip = 20 drop/mL)</option>
+              <option value="60">جهاز محاليل أطفال (Micro-drip = 60 drop/mL)</option>
+              <option value="15">جهاز نقل دم (Blood Set = 15 drop/mL)</option>
+            </select>
+          </div>
+
+          <button class="btn-calc" onclick="calculateDripRate()">احسب المعدل الآن ⚡</button>
+        </div>
+
+        <div class="calc-result">
+          <h3>النتيجة الحسابية:</h3>
+          <div class="result-number" id="resultDripRate">0</div>
+          <span class="result-unit">قطرة / دقيقة (Drops/Min)</span>
+          <p class="result-hint" id="resultHint">أدخل البيانات واضغط احسب لمعرفة السرعة المطلوبة.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="nnn.js"></script>
+</body>
+</html>

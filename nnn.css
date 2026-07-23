@@ -1,0 +1,115 @@
+:root {
+  --primary: #0ea5e9;
+  --primary-glow: rgba(14, 165, 233, 0.35);
+  --accent: #10b981;
+  --bg-main: #0b0f19;
+  --bg-card: rgba(22, 30, 46, 0.85);
+  --border: rgba(255, 255, 255, 0.08);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+}
+
+body.light-mode {
+  --bg-main: #f1f5f9;
+  --bg-card: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: all 0.3s ease;
+  padding-bottom: 60px;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* Glow Effects */
+.ambient-glow {
+  position: fixed; border-radius: 50%; filter: blur(140px); z-index: -1; pointer-events: none;
+}
+.glow-1 { width: 400px; height: 400px; background: var(--primary-glow); top: -100px; right: 5%; }
+.glow-2 { width: 300px; height: 300px; background: rgba(16, 185, 129, 0.2); bottom: 100px; left: 5%; }
+
+/* Header */
+.header-glass {
+  background: rgba(11, 15, 25, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100; padding: 15px 0;
+}
+.nav-container { display: flex; align-items: center; justify-content: space-between; }
+.brand { display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 1.4rem; }
+.logo-badge { background: rgba(14, 165, 233, 0.15); padding: 6px; border-radius: 10px; }
+.pulse-dot { display: inline-block; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; margin-right: 5px; }
+
+.nav-links a { color: var(--text-muted); text-decoration: none; margin: 0 12px; font-weight: 600; }
+.nav-links a.active { color: var(--primary); }
+
+.theme-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
+
+/* Tracker Banner */
+.tracker-card {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(16, 185, 129, 0.05));
+  border: 1px solid var(--primary-glow);
+  padding: 25px; border-radius: 20px; margin: 25px 0;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.tracker-info h2 { font-size: 1.5rem; margin-bottom: 5px; }
+.tracker-info p { color: var(--text-muted); }
+.stat-box { background: var(--bg-card); padding: 15px 25px; border-radius: 16px; border: 1px solid var(--border); text-align: center; }
+.stat-num { display: block; font-size: 1.8rem; font-weight: 900; color: var(--primary); }
+.stat-label { font-size: 0.8rem; color: var(--text-muted); }
+
+/* Skill Player & Checklist */
+.section-header { margin-bottom: 20px; }
+.section-header h2 { font-size: 1.4rem; margin-bottom: 5px; }
+.skill-tag { background: rgba(14, 165, 233, 0.15); color: var(--primary); padding: 4px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; }
+
+.player-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 25px; margin-bottom: 50px; }
+
+.video-container { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+.video-container iframe { width: 100%; height: 280px; border: none; }
+.video-info { padding: 20px; }
+.video-info p { color: var(--text-muted); font-size: 0.9rem; margin-top: 5px; }
+
+.checklist-container { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; }
+.checklist-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.progress-badge { font-size: 0.85rem; font-weight: bold; color: var(--accent); }
+
+.progress-bar-bg { background: rgba(255,255,255,0.08); height: 8px; border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+.progress-bar-fill { background: linear-gradient(90deg, var(--primary), var(--accent)); height: 100%; transition: width 0.3s ease; }
+
+.checklist-items { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.check-item { display: flex; align-items: flex-start; gap: 12px; background: rgba(255,255,255,0.02); padding: 12px; border-radius: 12px; cursor: pointer; border: 1px solid transparent; }
+.check-item:hover { border-color: var(--border); }
+.check-item input { display: none; }
+
+.custom-check { width: 20px; height: 20px; border: 2px solid var(--text-muted); border-radius: 6px; display: inline-block; flex-shrink: 0; margin-top: 2px; }
+.check-item input:checked + .custom-check { background: var(--accent); border-color: var(--accent); position: relative; }
+.check-item input:checked + .custom-check::after { content: '✓'; color: white; position: absolute; top: -3px; right: 4px; font-weight: bold; }
+.check-item input:checked ~ .item-text { text-decoration: line-through; opacity: 0.6; }
+
+.btn-reset { margin-top: 15px; background: none; border: 1px dashed var(--border); color: var(--text-muted); padding: 8px; border-radius: 10px; cursor: pointer; font-family: inherit; }
+
+/* Calculator */
+.calculator-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 30px; }
+.calc-card { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; align-items: center; }
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; font-size: 0.85rem; margin-bottom: 6px; color: var(--text-muted); }
+.input-group input, .input-group select { width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 10px; color: var(--text-main); font-family: inherit; }
+.btn-calc { width: 100%; background: var(--primary); color: white; border: none; padding: 12px; border-radius: 10px; font-weight: bold; font-family: inherit; cursor: pointer; }
+
+.calc-result { background: rgba(14, 165, 233, 0.08); border: 1px solid var(--primary-glow); padding: 30px; border-radius: 16px; text-align: center; }
+.result-number { font-size: 3.5rem; font-weight: 900; color: var(--primary); margin: 10px 0; }
+.result-unit { font-weight: bold; color: var(--accent); }
+.result-hint { font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; }
+
+@media (max-width: 850px) {
+  .player-grid, .calc-card, .tracker-card { grid-template-columns: 1fr; flex-direction: column; gap: 20px; }
+}
